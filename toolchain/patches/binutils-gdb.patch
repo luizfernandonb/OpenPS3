@@ -1,0 +1,46 @@
+--- config.sub
++++ config.sub
+@@ -180,6 +180,10 @@
+ 				basic_machine=mips-dec
+ 				basic_os=
+ 				;;
++                        ps3-ppu)
++                                basic_machine=powerpc64-ps3
++                                basic_os=elf
++                                ;;
+ 			*-*)
+ 				# Second component is usually, but not always the OS
+ 				case $field2 in
+--- ld/Makefile.in
++++ ld/Makefile.in
+@@ -583,7 +583,7 @@
+ # We put the scripts in the directory $(scriptdir)/ldscripts.
+ # We can't put the scripts in $(datadir) because the SEARCH_DIR
+ # directives need to be different for native and cross linkers.
+-scriptdir = $(tooldir)/lib
++scriptdir = /tmp
+ BASEDIR = $(srcdir)/..
+ BFDDIR = $(BASEDIR)/bfd
+ INCDIR = $(BASEDIR)/include
+--- binutils/Makefile.in
++++ binutils/Makefile.in
+@@ -693,7 +693,7 @@
+ RENAMED_PROGS = $(NM_PROG) $(STRIP_PROG) $(DEMANGLER_PROG)
+
+ # Stuff that goes in tooldir/ if appropriate.
+-TOOL_PROGS = nm-new strip-new ar ranlib dlltool objdump objcopy readelf
++#TOOL_PROGS = nm-new strip-new ar ranlib dlltool objdump objcopy readelf
+ BASEDIR = $(srcdir)/..
+ BFDDIR = $(BASEDIR)/bfd
+ INCDIR = $(BASEDIR)/include
+--- gas/Makefile.in
++++ gas/Makefile.in
+@@ -2150,7 +2150,7 @@
+ .PHONY: install-exec-local install-data-local
+ .PHONY: install-exec-bindir install-exec-tooldir
+
+-install-exec-local: install-exec-bindir @install_tooldir@
++install-exec-local: install-exec-bindir
+
+ install-exec-bindir: $(noinst_PROGRAMS)
+        $(mkinstalldirs) $(DESTDIR)$(bindir)
