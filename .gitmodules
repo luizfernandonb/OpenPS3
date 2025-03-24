@@ -1,0 +1,4 @@
+[submodule "toolchain/binutils-gdb"]
+	path = toolchain/binutils-gdb
+	url = git://sourceware.org/git/binutils-gdb.git
+	branch = binutils-2_44-branch
